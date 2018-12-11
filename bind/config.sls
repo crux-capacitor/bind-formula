@@ -78,6 +78,9 @@ bind_config:
     - mode: {{ salt['pillar.get']('bind:config:mode', map.mode) }}
     - context:
         map: {{ map }}
+{% if salt['pillar.get']('bind:configured_views', False) %}
+        views: True
+{% endif %}
     - require:
       - pkg: bind
     - watch_in:
